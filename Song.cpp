@@ -25,15 +25,35 @@ Song::Song(string _bandName, string _songTitle, int _fileSize){
     }
 
 }
-
-string Song::getBand() const{
-    return bandName;
+Song::Song(){
+    bandName = "";
+    songTitle = "";
+    fileSize = 0;
 }
 
-string Song::getSong() const{
-    return songTitle;
-}
 
-int Song::getFileSize() const{
-    return fileSize;
+bool Song::operator ==(Song const &rhs){
+    if(fileSize == rhs.fileSize && songTitle == rhs.songTitle && bandName == rhs.bandName)
+        return true;
+    return false;
+}
+bool Song::operator <(Song const &rhs){
+    if(bandName<rhs.bandName)
+        return true;
+    else if(songTitle<rhs.songTitle)
+        return true;
+    else if(fileSize<rhs.fileSize)
+        return true;
+
+    return false;
+}
+bool Song::operator >(Song const &rhs){
+    if(bandName>rhs.bandName)
+        return true;
+    else if(songTitle>rhs.songTitle)
+        return true;
+    else if(fileSize>rhs.fileSize)
+        return true;
+
+    return false;
 }

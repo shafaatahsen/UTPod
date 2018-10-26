@@ -24,9 +24,20 @@ class Song {
     public:
         Song();
         Song(string _bandName, string _songTitle, int _fileSize);
-        string getBand() const;
-        string getSong() const;
-        int getFileSize() const;
+        string getBand() const{
+            return bandName;
+        }
+        string getSong() const{
+            return songTitle;
+        }
+        int getFileSize() const{
+            return fileSize;
+        }
+
+        bool operator >(Song const &rhs);
+        bool operator ==(Song const &rhs);
+        bool operator <(Song const &rhs);
+
 
 
 };

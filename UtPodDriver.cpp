@@ -45,6 +45,13 @@ int main(int argc, char *argv[])
     cout << "add result = " << result << endl;
 
     t.showSongList();
+    cout<<"after shuffling"<<endl;
+    t.shuffle();
+    t.showSongList();
+
+    cout<<"after sorting"<<endl;
+    t.sortSongList();
+    t.showSongList();
 
     result = t.removeSong(s2);
     cout << "delete result = " << result << endl;
@@ -71,6 +78,21 @@ int main(int argc, char *argv[])
 
     t.showSongList();
     cout << "memory = " << t.getRemainingMemory() << endl;
+
+//    Test string library <,>,==
+//    string bru = "bruno";
+//    string bri = "brittney";
+//    if(bri<bru){
+//        cout<<"brittney comes before bruno"<<endl;
+//    }
+
+//    Test Random
+//    unsigned int currentTime =  (unsigned)time(0);
+//
+//    srand(currentTime);  //seed the random number generator
+//    cout<<rand()<<endl;
+//    cout<<rand()<<endl;
+//    cout<<rand()<<endl;
 
 
 }
