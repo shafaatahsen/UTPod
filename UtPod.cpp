@@ -5,11 +5,11 @@
 #include "UtPod.h"
 UtPod::UtPod(){
     songs = NULL;
-    memSize = 0;
+    memSize = MAX_MEMORY;
 }
 UtPod::UtPod(int size){
     songs = NULL;
-    if(size>512)
+    if(size>512 ||size<=0)
         memSize = MAX_MEMORY;
     else
         memSize = size;
@@ -17,14 +17,12 @@ UtPod::UtPod(int size){
 
 int UtPod::addSong(Song const &s){
     //check if there's enough memory to add song, add if so
-    int newSize = memSize + s.getFileSize();
-    if(newSize>512){
-        cout<<"Not enough memory, can't add song"<<endl;
+
+    if(s.getFileSize()>getRemainingMemory()){
+        //cout<<"Not enough memory, can't add song"<<endl;
         return NO_MEMORY;
     }
-    else{
-        memSize = newSize;
-    }
+
 
 
     SongNode *temp = new SongNode;
@@ -48,7 +46,6 @@ int UtPod::removeSong(Song const &s){
     if(songs->s.getSong() == s.getSong() && songs->s.getFileSize() == s.getFileSize() && songs->s.getBand() == s.getBand()){
         SongNode *temp = songs;
         songs = songs->next;
-        memSize -= s.getFileSize();
         delete(temp);
         return SUCCESS;
     }
@@ -60,12 +57,12 @@ int UtPod::removeSong(Song const &s){
         leader = leader->next;
         if(leader->s.getSong() == s.getSong() && leader->s.getFileSize() == s.getFileSize() && leader->s.getBand() == s.getBand()){
             chaser->next = leader->next;
-            memSize -= s.getFileSize();
             delete(leader);
             return SUCCESS;
         }
 
     }
+    return -1;
 }
 
 void UtPod::shuffle(){
@@ -117,10 +114,16 @@ void UtPod::swap(SongNode *s1, SongNode *s2){
 //void UtPod::sortSongList(){}
 
 int UtPod::getRemainingMemory() const{
-    return (512-memSize);
+    SongNode* h  = songs;
+    int totalUsed = 0;
+    while(h != NULL){
+        totalUsed += h->s.getFileSize();
+        h = h->next;
+    }
+    return memSize-totalUsed;
 }
 
-UtPod::~UtPod(){
+void UtPod::clearMemory(){
     SongNode* head = songs;
     SongNode* trail = songs;
     while(trail != NULL){
@@ -129,8 +132,41 @@ UtPod::~UtPod(){
         trail = head;
     }
 }
+/*
+                                                Destructor
+*/
+UtPod::~UtPod(){
+    clearMemory();
+}
 
-void UtPod::MergeSort(SongNode **headRef){
+/*
+                                                SORT FUNCTIONS
+*/
+void UtPod::BubbleSort(SongNode * const songs){
+    SongNode *i = songs;
+    SongNode *j =NULL;
+    int swapped;
+    do
+    {
+        swapped = 0;
+        i = songs;
+
+        while (i->next != j)
+        {
+            if (i->s > i->next->s)
+            {
+                swap(i, i->next);
+                swapped = 1;
+            }
+            i = i->next;
+        }
+        j = i;
+    }
+    while (swapped);
+
+}
+
+void UtPod::MergeSort(SongNode ** headRef){
     SongNode *head = *headRef;
     SongNode *a;
     SongNode *b;

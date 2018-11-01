@@ -18,8 +18,9 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    UtPod t;
+    UtPod t(512);
 
+    cout<<t.getTotalMemory()<<" total memory"<<endl;
     Song s1("Beatles", "Hey Jude1", 4);
     int result = t.addSong(s1);
     cout << "result = " << result << endl;
@@ -39,8 +40,22 @@ int main(int argc, char *argv[])
     Song s4("Beatles", "Hey Jude4", 7);
     result = t.addSong(s4);
     cout << "result = " << result << endl;
+    cout<< t.getRemainingMemory()<< " memory remaining"<<endl;
+
+
 
     Song s5("Beatles", "Hey Jude5", 241);
+    result = t.addSong(s5);
+    cout << "add result = " << result << endl;
+
+    Song s6("Beatles", "Hey Jude5", 50);
+    result = t.addSong(s6);
+    cout << "add result = " << result << endl;
+
+    Song s7("Beatles", "Hey Jude5", 241);
+    result = t.addSong(s7);
+    cout << "add result = " << result << endl;
+
     result = t.addSong(s5);
     cout << "add result = " << result << endl;
 
