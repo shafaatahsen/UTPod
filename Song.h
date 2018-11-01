@@ -1,9 +1,13 @@
-//
-// Created by Zanel on 10/23/2018.
-//
+/* Song.cpp
+Implementation of Song class
+
+Ahmad Shafaat Ahsen
+EE 312 10/16/18
+
+This is a simulation of Songs object
 
 
-
+*/
 
 #ifndef UTPOD_SONG_H
 #define UTPOD_SONG_H

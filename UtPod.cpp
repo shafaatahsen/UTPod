@@ -1,8 +1,16 @@
-//
-// Created by Zanel on 10/22/2018.
-//
+/* UtPod.cpp
+Implementation of UTPod
+
+Ahmad Shafaat Ahsen
+EE 312 10/16/18
+
+This is a simulation of UtPod
+
+
+*/
 
 #include "UtPod.h"
+#include "Song.h"
 UtPod::UtPod(){
     songs = NULL;
     memSize = MAX_MEMORY;
@@ -66,7 +74,7 @@ int UtPod::removeSong(Song const &s){
 }
 
 void UtPod::shuffle(){
-    unsigned int currentTime =  (unsigned)time(nullptr);
+    unsigned int currentTime =  (unsigned)time(NULL);
 
     srand(currentTime);  //seed the random number generator
     SongNode *curNode = songs;

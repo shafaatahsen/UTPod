@@ -1,12 +1,11 @@
-/* utPod_driver.h
-Demo Driver for the UtPod.
+/* UtPod.cpp
+Implementation of UTPod
 
 Ahmad Shafaat Ahsen
 EE 312 10/16/18
 
-These are functions for the UtPod.
+This is a simulation of UtPod
 
-You will want to do more complete testing.
 
 */
 #ifndef UTPOD_H
@@ -49,6 +48,9 @@ class UtPod
       }
       int getNumSongs() const;
 
+      //BubbleSort and Merge Sort both came from implementation by GeeksforGeeks
+      //https://www.geeksforgeeks.org/c-program-bubble-sort-linked-list/
+      //https://www.geeksforgeeks.org/merge-sort-for-linked-list/
       void BubbleSort(SongNode * const songs);
       void MergeSort(SongNode ** const headRef);
       void frontBackSplit(SongNode *src, SongNode **frontRef, SongNode **backRef);

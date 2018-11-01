@@ -109,5 +109,7 @@ int main(int argc, char *argv[])
 //    cout<<rand()<<endl;
 //    cout<<rand()<<endl;
 
+    return 0;
+
 
 }

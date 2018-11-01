@@ -1,6 +1,4 @@
-//
-// Created by Zanel on 10/23/2018.
-//
+
 
 #include "Song.h"
 Song::Song(string _bandName, string _songTitle, int _fileSize){
